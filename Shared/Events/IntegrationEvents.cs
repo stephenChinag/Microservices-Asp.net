@@ -1,5 +1,5 @@
 
-using  Shared.Models;
+using Shared.Models;
 
 namespace Shared.Events
 {

@@ -169,3 +169,4 @@ C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\refint\UserService.d
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.pdb
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.genruntimeconfig.cache
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\ref\UserService.dll
+C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.sourcelink.json

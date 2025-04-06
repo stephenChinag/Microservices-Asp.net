@@ -1,152 +1,101 @@
-// UserService/Services/UserService.cs
-using Microsoft.EntityFrameworkCore;
-using Shared.Events;
-using Shared.Interfaces;
-using Shared.Models;
-using UserService.Data;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using UserService.Models;
 
 namespace UserService.Services
 {
-    public class UserService
+    public class JwtService
     {
-        private readonly UserDbContext _context;
-        private readonly JwtService _jwtService;
-        private readonly IEventBus _eventBus;
+        private readonly IConfiguration _configuration;
 
-        public UserService(UserDbContext context, JwtService jwtService, IEventBus eventBus)
+        public JwtService(IConfiguration configuration)
         {
-            _context = context;
-            _jwtService = jwtService;
-            _eventBus = eventBus;
+            _configuration = configuration;
         }
 
-        public async Task<(UserDto user, string token)> AuthenticateAsync(UserLoginDto loginDto)
+        public string GenerateToken(string userId, string email, IEnumerable<string> roles = null)
         {
-            var user = await _context.Users
-                .SingleOrDefaultAsync(u => u.Username == loginDto.Username);
-
-            if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash))
+            var claims = new List<Claim>
             {
-                return (null, null);
-            }
-
-            // Update last login
-            user.LastLogin = DateTime.UtcNow;
-            await _context.SaveChangesAsync();
-
-            // Generate token
-            var token = _jwtService.GenerateJwtToken(user);
-
-            return (MapToDto(user), token);
-        }
-
-        public async Task<UserDto> RegisterAsync(UserRegisterDto registerDto)
-        {
-            // Check if username or email already exists
-            if (await _context.Users.AnyAsync(u => u.Username == registerDto.Username || u.Email == registerDto.Email))
-            {
-                return null;
-            }
-
-            var newUser = new User
-            {
-                Username = registerDto.Username,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
-                Email = registerDto.Email,
-                IsAdmin = false, // Regular users by default
-                CreatedAt = DateTime.UtcNow
+                new Claim(ClaimTypes.NameIdentifier, userId),
+                new Claim(ClaimTypes.Email, email)
             };
 
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
+            if (roles != null)
+            {
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            }
 
-            // Publish integration event
-            _eventBus.Publish(new UserCreatedIntegrationEvent(
-                newUser.Id,
-                newUser.Username,
-                newUser.Email
-            ));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            return MapToDto(newUser);
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(3),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<List<UserDto>> GetAllUsersAsync()
+        public string GenerateJwtToken(User user)
         {
-            var users = await _context.Users.ToListAsync();
-            return users.Select(MapToDto).ToList();
+            // Create roles list based on user's admin status
+            var roles = new List<string>();
+            if (user.IsAdmin)
+            {
+                roles.Add("Admin");
+            }
+            else
+            {
+                roles.Add("User");
+            }
+
+            // Call the existing GenerateToken method
+            return GenerateToken(
+                user.Id.ToString(),
+                user.Email,
+                roles
+            );
         }
 
-        public async Task<UserDto> GetUserByIdAsync(int id)
+        public bool ValidateToken(string token, out ClaimsPrincipal principal)
         {
-            var user = await _context.Users.FindAsync(id);
-            return user != null ? MapToDto(user) : null;
-        }
+            principal = null;
 
-        public async Task<bool> UpdateUserAsync(int id, UserRegisterDto updateDto)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidIssuer = _configuration["Jwt:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = _configuration["Jwt:Audience"],
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                principal = tokenHandler.ValidateToken(token, validationParameters, out _);
+                return true;
+            }
+            catch
             {
                 return false;
             }
-
-            // Update properties if provided
-            if (!string.IsNullOrEmpty(updateDto.Username))
-            {
-                user.Username = updateDto.Username;
-            }
-
-            if (!string.IsNullOrEmpty(updateDto.Email))
-            {
-                user.Email = updateDto.Email;
-            }
-
-            if (!string.IsNullOrEmpty(updateDto.Password))
-            {
-                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateDto.Password);
-            }
-
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> DeleteUserAsync(int id)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return false;
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> SetAdminRoleAsync(int id, bool isAdmin)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return false;
-            }
-
-            user.IsAdmin = isAdmin;
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        // Helper method to map User entity to UserDto
-        private UserDto MapToDto(User user)
-        {
-            return new UserDto
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email,
-                IsAdmin = user.IsAdmin
-            };
         }
     }
 }
