@@ -1,12 +1,13 @@
 
 // UserService/Program.cs
-using Microsoft.AspNetCore.Authentication.;  // Make sure this package is installed
+using Microsoft.AspNetCore.Authentication.JwtBearer; // Make sure this package is installed
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shared.Interfaces;
 using System.Text;
 using UserService.Data;
+using UserService.Infrastructure;
 using UserService.Services;
 
 var builder = WebApplication.CreateBuilder(args);

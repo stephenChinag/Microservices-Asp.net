@@ -12,6 +12,7 @@ namespace UserService.Data
 
         public DbSet<User> Users { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Add some seed data for testing
@@ -20,21 +21,23 @@ namespace UserService.Data
                 {
                     Id = 1,
                     Username = "admin",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
+                    PasswordHash = "$2a$11$ej7Oi5k/ZzpTnr5Ws8yp8.QOufKwdTqQH5KZF/QmCU3CGARvxzNrC", // Pre-computed hash for "admin123"
                     Email = "admin@example.com",
                     IsAdmin = true,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2025, 4, 1) // Fixed date
                 },
                 new User
                 {
                     Id = 2,
                     Username = "user",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("user123"),
+                    PasswordHash = "$2a$11$I3MmunU0JwNUowvKmp.BCOA9h5GciUDSTaLqFzlYVjkJrGssvRmBK", // Pre-computed hash for "user123"
                     Email = "user@example.com",
                     IsAdmin = false,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2025, 4, 1) // Fixed date
                 }
             );
         }
+
+
     }
 }
