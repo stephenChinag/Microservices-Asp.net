@@ -50,7 +50,7 @@
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Humanizer.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -95,7 +95,7 @@
       "Microsoft.Build.Framework/17.8.3": {
         "type": "package",
         "compile": {
-          "ref/net8.0/Microsoft.Build.Framework.dll": {
+          "ref/net8.0/_._": {
             "related": ".xml"
           }
         },
@@ -108,7 +108,7 @@
       "Microsoft.Build.Locator/1.7.8": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.Build.Locator.dll": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
           "lib/net6.0/Microsoft.Build.Locator.dll": {}
@@ -133,7 +133,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -190,7 +190,7 @@
           "Microsoft.CodeAnalysis.Common": "[4.8.0]"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.CSharp.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -250,7 +250,7 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "[4.8.0]"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -312,7 +312,7 @@
           "System.Threading.Channels": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -372,11 +372,8 @@
           "System.Text.Json": "7.0.3"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.runtimeconfig.json;.xml"
-          },
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll": {
-            "related": ".BuildHost.pdb;.BuildHost.runtimeconfig.json;.BuildHost.xml;.pdb;.xml"
           }
         },
         "runtime": {
@@ -553,7 +550,7 @@
           "System.Text.Json": "9.0.3"
         },
         "compile": {
-          "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
+          "lib/net8.0/_._": {
             "related": ".xml"
           }
         },
@@ -721,7 +718,7 @@
           "System.Text.Json": "9.0.3"
         },
         "compile": {
-          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
+          "lib/net8.0/_._": {
             "related": ".xml"
           }
         },
@@ -963,7 +960,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.OpenApi/1.6.14": {
+      "Microsoft.OpenApi/1.6.23": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -1017,7 +1014,7 @@
           "System.CodeDom": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Mono.TextTemplating.dll": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
           "lib/net6.0/Mono.TextTemplating.dll": {}
@@ -1038,10 +1035,26 @@
           "build/Swashbuckle.AspNetCore.props": {}
         }
       },
-      "Swashbuckle.AspNetCore.Swagger/6.6.2": {
+      "Swashbuckle.AspNetCore.Annotations/8.1.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.OpenApi": "1.6.14"
+          "Swashbuckle.AspNetCore.SwaggerGen": "8.1.0"
+        },
+        "compile": {
+          "lib/net8.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/8.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.23"
         },
         "compile": {
           "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll": {
@@ -1057,10 +1070,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Swashbuckle.AspNetCore.SwaggerGen/6.6.2": {
+      "Swashbuckle.AspNetCore.SwaggerGen/8.1.0": {
         "type": "package",
         "dependencies": {
-          "Swashbuckle.AspNetCore.Swagger": "6.6.2"
+          "Swashbuckle.AspNetCore.Swagger": "8.1.0"
         },
         "compile": {
           "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
@@ -1109,7 +1122,7 @@
       "System.CodeDom/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.CodeDom.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -1125,7 +1138,7 @@
       "System.Collections.Immutable/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Collections.Immutable.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1160,7 +1173,7 @@
       "System.Composition.AttributedModel/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Composition.AttributedModel.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1179,7 +1192,7 @@
           "System.Composition.AttributedModel": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.Convention.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1198,7 +1211,7 @@
           "System.Composition.Runtime": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.Hosting.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1214,7 +1227,7 @@
       "System.Composition.Runtime/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Composition.Runtime.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1235,7 +1248,7 @@
           "System.Composition.Runtime": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.TypedParts.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1410,7 +1423,7 @@
           "System.Collections.Immutable": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Reflection.Metadata.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1463,7 +1476,7 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -1668,7 +1681,7 @@
       "System.Threading.Channels/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Threading.Channels.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -1710,6 +1723,16 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
         }
       }
     }
@@ -3786,10 +3809,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.OpenApi/1.6.14": {
-      "sha512": "tTaBT8qjk3xINfESyOPE2rIellPvB7qpVqiWiyA/lACVvz+xOGiXhFUfohcx82NLbi5avzLW0lx+s6oAqQijfw==",
+    "Microsoft.OpenApi/1.6.23": {
+      "sha512": "tZ1I0KXnn98CWuV8cpI247A17jaY+ILS9vvF7yhI0uPPEqF4P1d7BWL5Uwtel10w9NucllHB3nTkfYTAcHAh8g==",
       "type": "package",
-      "path": "microsoft.openapi/1.6.14",
+      "path": "microsoft.openapi/1.6.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3797,7 +3820,7 @@
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
-        "microsoft.openapi.1.6.14.nupkg.sha512",
+        "microsoft.openapi.1.6.23.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
     },
@@ -3877,63 +3900,66 @@
         "swashbuckle.aspnetcore.nuspec"
       ]
     },
-    "Swashbuckle.AspNetCore.Swagger/6.6.2": {
-      "sha512": "ovgPTSYX83UrQUWiS5vzDcJ8TEX1MAxBgDFMK45rC24MorHEPQlZAHlaXj/yth4Zf6xcktpUgTEBvffRQVwDKA==",
+    "Swashbuckle.AspNetCore.Annotations/8.1.0": {
+      "sha512": "8k3FzHKtyUaD6cA3H6i+SOq4ln1ne6Sv5Lr0KiXAnF7JALh2DSNCF9GZy4DeRHDEXkJy+sStVTqvIRYNhMBE3g==",
       "type": "package",
-      "path": "swashbuckle.aspnetcore.swagger/6.6.2",
+      "path": "swashbuckle.aspnetcore.annotations/8.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.dll",
-        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.pdb",
-        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.xml",
-        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll",
-        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.pdb",
-        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.xml",
-        "lib/net7.0/Swashbuckle.AspNetCore.Swagger.dll",
-        "lib/net7.0/Swashbuckle.AspNetCore.Swagger.pdb",
-        "lib/net7.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/net8.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net8.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net8.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "package-readme.md",
+        "swashbuckle.aspnetcore.annotations.8.1.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.annotations.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.Swagger/8.1.0": {
+      "sha512": "TRpBDdWh/6IzXHOLKVEuZSuhcdc8OIwhr8dyLnWvEh6FO4f0KiATAzr8yzHspcCFzCc/CONpvUCq4DzazpP6Og==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swagger/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll",
         "lib/net8.0/Swashbuckle.AspNetCore.Swagger.pdb",
         "lib/net8.0/Swashbuckle.AspNetCore.Swagger.xml",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.pdb",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.xml",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.pdb",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.xml",
         "package-readme.md",
-        "swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+        "swashbuckle.aspnetcore.swagger.8.1.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swagger.nuspec"
       ]
     },
-    "Swashbuckle.AspNetCore.SwaggerGen/6.6.2": {
-      "sha512": "zv4ikn4AT1VYuOsDCpktLq4QDq08e7Utzbir86M5/ZkRaLXbCPF11E1/vTmOiDzRTl0zTZINQU2qLKwTcHgfrA==",
+    "Swashbuckle.AspNetCore.SwaggerGen/8.1.0": {
+      "sha512": "sXAUNodmnzrJb1qmgdLY6HgTDsgagXCn6p+qygW2wP0BjcvdZZA6GdDgtuc8iQON9ekrp7m5G0Zc09lvuNhc/A==",
       "type": "package",
-      "path": "swashbuckle.aspnetcore.swaggergen/6.6.2",
+      "path": "swashbuckle.aspnetcore.swaggergen/8.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
-        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
-        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
-        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
-        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
-        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
-        "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
-        "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
-        "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
         "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
         "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
         "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
-        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
         "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
         "package-readme.md",
-        "swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggergen.8.1.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggergen.nuspec"
       ]
     },
@@ -5165,6 +5191,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5172,34 +5203,47 @@
       "Microsoft.AspNetCore.OpenApi >= 8.0.12",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
-      "Swashbuckle.AspNetCore >= 6.6.2"
+      "Shared >= 1.0.0",
+      "Swashbuckle.AspNetCore >= 6.6.2",
+      "Swashbuckle.AspNetCore.Annotations >= 8.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\ApiGateway\\ProductService\\ProductService.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\code\\projects\\c-sharp\\Microservices-Asp.net\\ProductService\\ProductService.csproj",
       "projectName": "ProductService",
-      "projectPath": "C:\\Users\\HP\\Desktop\\ApiGateway\\ProductService\\ProductService.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\ApiGateway\\ProductService\\obj\\",
+      "projectPath": "C:\\Users\\hp\\code\\projects\\c-sharp\\Microservices-Asp.net\\ProductService\\ProductService.csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\code\\projects\\c-sharp\\Microservices-Asp.net\\ProductService\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\hp\\code\\projects\\c-sharp\\Microservices-Asp.net\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\hp\\code\\projects\\c-sharp\\Microservices-Asp.net\\Shared\\Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -5211,7 +5255,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -5234,6 +5279,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.6.2, )"
+          },
+          "Swashbuckle.AspNetCore.Annotations": {
+            "target": "Package",
+            "version": "[8.1.0, )"
           }
         },
         "imports": [
@@ -5255,7 +5304,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
