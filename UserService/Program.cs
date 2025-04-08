@@ -1,29 +1,72 @@
-
-// UserService/Program.cs
-using Microsoft.AspNetCore.Authentication.JwtBearer; // Make sure this package is installed
+// Program.cs
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Shared.Interfaces;
 using System.Text;
 using UserService.Data;
-using UserService.Infrastructure;
+using UserService.Data.Repositories;
 using UserService.Services;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add DbContext
-builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Add services
-builder.Services.AddScoped<JwtService>();
-builder.Services.AddScoped<UserService.Services.UserService>();
-
-// Add controllers
+// Add services to the container
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
-// Add JWT Authentication
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "User Service API", Version = "v1" });
+
+    // Define the security scheme with the corrected configuration
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,  // Changed from ApiKey to Http
+        Scheme = "Bearer",
+        BearerFormat = "JWT"  // Added this line
+    });
+
+    // Make sure Swagger UI requires a Bearer token
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
+// Configure DbContext
+builder.Services.AddDbContext<UserDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,           // Number of times to retry
+                maxRetryDelay: TimeSpan.FromSeconds(30), // Max delay between retries
+                errorNumbersToAdd: null);    // SQL error numbers to consider transient
+        }
+    ));
+
+// Register repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Register services
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService.Services.UserService>();
+
+// Configure JWT authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -35,39 +78,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
-
-// Add Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Service API", Version = "v1" });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = "JWT Authorization header using the Bearer scheme",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-            },
-            Array.Empty<string>()
-        }
-    });
-});
-
-// TODO: Add a real implementation of IEventBus
-// For now, add a dummy implementation for compilation
-builder.Services.AddScoped<IEventBus, DummyEventBus>();
 
 var app = builder.Build();
 
@@ -75,22 +88,23 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "User Service API v1");
+        c.RoutePrefix = string.Empty; // Serves the Swagger UI at the app's root
+    });
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
+app.UseAuthentication(); // Must come before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
-// Apply migrations on startup in development
-if (app.Environment.IsDevelopment())
+// Ensure database is created
+using (var scope = app.Services.CreateScope())
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbContext = scope.ServiceProvider.GetRequiredService<UserDbContext>();
-        dbContext.Database.Migrate();
-    }
+    var dbContext = scope.ServiceProvider.GetRequiredService<UserDbContext>();
+    dbContext.Database.EnsureCreated();
 }
 
 app.Run();
