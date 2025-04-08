@@ -7,9 +7,12 @@ C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\UserService.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\UserService.pdb
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Humanizer.dll
+C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -146,8 +149,6 @@ C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\runtimes\win\lib\net
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Shared.dll
-C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Shared.pdb
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.csproj.AssemblyReference.cache
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.AssemblyInfoInputs.cache
@@ -155,6 +156,7 @@ C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.Assembly
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.csproj.CoreCompileInputs.cache
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.sourcelink.json
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\staticwebassets\msbuild.UserService.Microsoft.AspNetCore.StaticWebAssets.props
@@ -169,7 +171,3 @@ C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\refint\UserService.d
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.pdb
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.genruntimeconfig.cache
 C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\ref\UserService.dll
-C:\Users\HP\Desktop\ApiGateway\UserService\obj\Debug\net8.0\UserService.sourcelink.json
-C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\BCrypt.Net-Next.dll
-C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\HP\Desktop\ApiGateway\UserService\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll

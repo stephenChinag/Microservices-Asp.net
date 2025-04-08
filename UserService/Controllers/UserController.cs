@@ -29,7 +29,7 @@ namespace UserService.Controllers
         }
 
         [HttpGet("{id}")]
-        // [Authorize]
+        [Authorize]
         public async Task<IActionResult> GetUserById(Guid id)
         {
             try
